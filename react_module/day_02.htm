@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HTML Input Types and Attributes</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 40px;
+                justify-self: center;
+            }
+            div {
+                margin-bottom: 15px;
+            }
+            label {
+                display: inline-block;
+                width: 150px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>HTML Input Types</h1>
+
+        <form action="#" method="post">
+            <!-- Text -->
+            <div>
+                <label>Text:</label>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter name"
+                    value=""
+                    maxlength="20"
+                    minlength="3"
+                    size="25"
+                    required
+                    autofocus />
+            </div>
+
+            <!-- Password -->
+            <div>
+                <label>Password:</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    minlength="8"
+                    required />
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label>Email:</label>
+                <input type="email" name="email" placeholder="abc@gmail.com" required />
+            </div>
+
+            <!-- Number -->
+            <div>
+                <label>Number:</label>
+                <input type="number" name="age" min="18" max="60" step="1" />
+            </div>
+
+            <!-- Tel -->
+            <div>
+                <label>Telephone:</label>
+                <input
+                    type="tel"
+                    name="phone"
+                    pattern="[0-9]{10}"
+                    placeholder="10 digit number" />
+            </div>
+
+            <!-- URL -->
+            <div>
+                <label>Website:</label>
+                <input type="url" name="website" placeholder="https://example.com" />
+            </div>
+
+            <!-- Search -->
+            <div>
+                <label>Search:</label>
+                <input type="search" name="search" placeholder="Search here" />
+            </div>
+
+            <!-- Date -->
+            <div>
+                <label>Date:</label>
+                <input type="date" name="dob" min="2000-01-01" max="2030-12-31" />
+            </div>
+
+            <!-- Time -->
+            <div>
+                <label>Time:</label>
+                <input type="time" name="time" />
+            </div>
+
+            <!-- Datetime Local -->
+            <div>
+                <label>DateTime Local:</label>
+                <input type="datetime-local" name="datetime" />
+            </div>
+
+            <!-- Month -->
+            <div>
+                <label>Month:</label>
+                <input type="month" name="month" />
+            </div>
+
+            <!-- Week -->
+            <div>
+                <label>Week:</label>
+                <input type="week" name="week" />
+            </div>
+
+            <!-- Color -->
+            <div>
+                <label>Color:</label>
+                <input type="color" name="color" />
+            </div>
+
+            <!-- Range -->
+            <div>
+                <label>Range:</label>
+                <input type="range" name="volume" min="0" max="100" value="50" />
+            </div>
+
+            <!-- Radio -->
+            <div>
+                <label>Gender:</label>
+                <input type="radio" name="gender" value="Male" /> Male
+                <input type="radio" name="gender" value="Female" /> Female
+            </div>
+
+            <!-- Checkbox -->
+            <div>
+                <label>Skills:</label>
+                <input type="checkbox" name="java" /> Java
+                <input type="checkbox" name="python" /> Python
+                <input type="checkbox" name="sql" /> SQL
+            </div>
+
+            <!-- File -->
+            <div>
+                <label>Upload File:</label>
+                <input type="file" name="resume" accept=".pdf,.doc,.docx" multiple />
+            </div>
+
+            <!-- Hidden -->
+            <div>
+                <input type="hidden" name="userId" value="101" />
+            </div>
+
+            <!-- Image -->
+            <div>
+                <label>Image Button:</label>
+                <input
+                    type="image"
+                    src="https://via.placeholder.com/100x40?text=Submit"
+                    alt="Submit" />
+            </div>
+
+            <!-- Button -->
+            <div>
+                <label>Button:</label>
+                <input type="button" value="Click Me" />
+            </div>
+
+            <!-- Submit -->
+            <div>
+                <label>Submit:</label>
+                <input type="submit" value="Submit Form" />
+            </div>
+
+            <!-- Reset -->
+            <div>
+                <label>Reset:</label>
+                <input type="reset" value="Clear Form" />
+            </div>
+        </form>
+
+        <h2>Common Input Attributes</h2>
+
+        <table border="1" cellpadding="8">
+            <tr>
+                <th>Attribute</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>Specifies the input type.</td>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>Name used when submitting form data.</td>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>Unique identifier.</td>
+            </tr>
+            <tr>
+                <td>value</td>
+                <td>Default value.</td>
+            </tr>
+            <tr>
+                <td>placeholder</td>
+                <td>Hint text inside input.</td>
+            </tr>
+            <tr>
+                <td>required</td>
+                <td>Makes field mandatory.</td>
+            </tr>
+            <tr>
+                <td>readonly</td>
+                <td>User cannot modify value.</td>
+            </tr>
+            <tr>
+                <td>disabled</td>
+                <td>Disables input.</td>
+            </tr>
+            <tr>
+                <td>maxlength</td>
+                <td>Maximum number of characters.</td>
+            </tr>
+            <tr>
+                <td>minlength</td>
+                <td>Minimum number of characters.</td>
+            </tr>
+            <tr>
+                <td>min</td>
+                <td>Minimum allowed value.</td>
+            </tr>
+            <tr>
+                <td>max</td>
+                <td>Maximum allowed value.</td>
+            </tr>
+            <tr>
+                <td>step</td>
+                <td>Increment interval.</td>
+            </tr>
+            <tr>
+                <td>size</td>
+                <td>Visible width of input.</td>
+            </tr>
+            <tr>
+                <td>pattern</td>
+                <td>Regular expression validation.</td>
+            </tr>
+            <tr>
+                <td>checked</td>
+                <td>Default selected checkbox/radio.</td>
+            </tr>
+            <tr>
+                <td>multiple</td>
+                <td>Allows selecting multiple values/files.</td>
+            </tr>
+            <tr>
+                <td>accept</td>
+                <td>Allowed file types.</td>
+            </tr>
+            <tr>
+                <td>autocomplete</td>
+                <td>Enables/disables suggestions.</td>
+            </tr>
+            <tr>
+                <td>autofocus</td>
+                <td>Automatically focuses input.</td>
+            </tr>
+            <tr>
+                <td>list</td>
+                <td>Connects input with datalist.</td>
+            </tr>
+            <tr>
+                <td>form</td>
+                <td>Associates input with a form.</td>
+            </tr>
+            <tr>
+                <td>src</td>
+                <td>Image source (type="image").</td>
+            </tr>
+            <tr>
+                <td>alt</td>
+                <td>Alternate text for image input.</td>
+            </tr>
+            <tr>
+                <td>dirname</td>
+                <td>Stores text direction.</td>
+            </tr>
+        </table>
+    </body>
+</html>

@@ -5,6 +5,8 @@ const StudentData = () => {
         {
             roll: 1,
             name: "Jayesh",
+            house: "A",
+            address: "Pune",
             maths: 80,
             english: 75,
             science: 69,
@@ -12,6 +14,8 @@ const StudentData = () => {
         {
             roll: 2,
             name: "Yash",
+            house: "A",
+            address: "Pune",
             maths: 88,
             english: 80,
             science: 75,
@@ -20,17 +24,21 @@ const StudentData = () => {
     const [student, setStudent] = useState({
         roll: "",
         name: "",
+        house: "",
+        address: "",
         maths: "",
         english: "",
         science: "",
     });
 
     const handleChange = e => {
-        let { name, value } = e.target;
+        let { name, value, type } = e.target;
+
+        const parsedValue = type === "number" ? Number(value) : value;
 
         setStudent({
             ...student,
-            [name]: name === "name" ? value : Number(value),
+            [name]: parsedValue,
         });
     };
 
@@ -38,7 +46,15 @@ const StudentData = () => {
         e.preventDefault();
 
         setAllStudent([...allStudents, student]);
-        setStudent({ roll: "", name: "", maths: "", english: "", science: "" });
+        setStudent({
+            roll: "",
+            name: "",
+            house: "",
+            address: "",
+            maths: "",
+            english: "",
+            science: "",
+        });
     };
 
     const getPercentage = stud => {
@@ -68,6 +84,24 @@ const StudentData = () => {
                         type="text"
                         name="name"
                         value={student.name}
+                        onChange={handleChange}
+                        required
+                    />
+                    <br />
+                    House :{" "}
+                    <input
+                        type="text"
+                        name="house"
+                        value={student.house}
+                        onChange={handleChange}
+                        required
+                    />
+                    <br />
+                    Address :{" "}
+                    <input
+                        type="text"
+                        name="address"
+                        value={student.address}
                         onChange={handleChange}
                         required
                     />
@@ -109,6 +143,8 @@ const StudentData = () => {
                         <tr>
                             <th>Roll No.</th>
                             <th>Name</th>
+                            <th>House</th>
+                            <th>Address</th>
                             <th>Maths</th>
                             <th>English</th>
                             <th>Science</th>
@@ -121,6 +157,8 @@ const StudentData = () => {
                             <tr key={stud.roll}>
                                 <td>{stud.roll}</td>
                                 <td>{stud.name}</td>
+                                <td>{stud.house}</td>
+                                <td>{stud.address}</td>
                                 <td>{stud.maths}</td>
                                 <td>{stud.english}</td>
                                 <td>{stud.science}</td>

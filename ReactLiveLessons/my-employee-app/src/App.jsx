@@ -120,7 +120,7 @@ const App = () => {
 
                 <h3>Employee List</h3>
 
-                <table border={2}>
+                <table border={2} style={{ borderCollapse: "collapse" }}>
                     <thead>
                         <tr>
                             <th rowSpan={2}>ID</th>

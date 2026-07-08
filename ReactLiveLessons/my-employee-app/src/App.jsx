@@ -123,14 +123,17 @@ const App = () => {
                 <table border={2}>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Role</th>
+                            <th rowSpan={2}>ID</th>
+                            <th rowSpan={2}>Name</th>
+                            <th rowSpan={2}>Role</th>
+                            <th colSpan={4}>Salary Details</th>
+                            <th rowSpan={2}>Actions</th>
+                        </tr>
+                        <tr>
                             <th>Gross Salary</th>
                             <th>PF</th>
                             <th>Insurance</th>
                             <th>In Hand Salary</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
 

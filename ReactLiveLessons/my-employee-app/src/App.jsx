@@ -44,6 +44,14 @@ const App = () => {
         e.preventDefault();
 
         setAllEmployee([...allEmployee, employee]);
+        setEmployee({
+            id: "",
+            name: "",
+            role: "",
+            grossSalary: "",
+            PF: "",
+            insurance: "",
+        });
     };
 
     const handleDelete = emp => {

@@ -58,7 +58,7 @@ const App = () => {
                         value={employee.id}
                         onChange={handleChange}
                         required
-                        readOnly={setUpdating ? true : ""}
+                        readOnly={updating ? true : ""}
                     />
                     <br />
                     Name :{" "}

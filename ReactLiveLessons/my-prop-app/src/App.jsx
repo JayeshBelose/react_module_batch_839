@@ -6,6 +6,7 @@ import Multiply from "./components/Multiply";
 import Division from "./components/Division";
 import Modulo from "./components/Modulo";
 import ChildComponent from "./components/ChildComponent";
+import ShowAllEmployees from "./components/ShowAllEmployees";
 
 const App = () => {
     const [a, setA] = useState(0);
@@ -23,6 +24,10 @@ const App = () => {
         console.log("From App --", msg);
     };
 
+    const handleDelete = id => {
+        console.log("Employee deleted with Id : ", id);
+    };
+
     return (
         <div>
             <center>
@@ -38,6 +43,7 @@ const App = () => {
                 <Modulo modulo={modulo} x={a} y={b} /> */}
 
                 <ChildComponent sendToParent={displayFromApp} />
+                <ShowAllEmployees onIdSelect={handleDelete} />
             </center>
         </div>
     );

@@ -9,6 +9,24 @@ import ChildComponent from "./components/ChildComponent";
 import ShowAllEmployees from "./components/ShowAllEmployees";
 
 const App = () => {
+    const [employees, setEmployees] = useState([
+        {
+            id: 101,
+            name: "Raj",
+            salary: 18000.0,
+        },
+        {
+            id: 102,
+            name: "Tina",
+            salary: 20000.0,
+        },
+        {
+            id: 103,
+            name: "Ramesh",
+            salary: 23000.0,
+        },
+    ]);
+
     const [a, setA] = useState(0);
     const [b, setB] = useState(0);
 
@@ -25,7 +43,8 @@ const App = () => {
     };
 
     const handleDelete = id => {
-        console.log("Employee deleted with Id : ", id);
+        const newList = employees.filter(emp => emp.id !== id);
+        setEmployees(newList);
     };
 
     return (
@@ -43,7 +62,7 @@ const App = () => {
                 <Modulo modulo={modulo} x={a} y={b} /> */}
 
                 <ChildComponent sendToParent={displayFromApp} />
-                <ShowAllEmployees onIdSelect={handleDelete} />
+                <ShowAllEmployees onIdSelect={handleDelete} tableData={employees} />
             </center>
         </div>
     );

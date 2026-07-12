@@ -1,27 +1,32 @@
 import React from "react";
 
-const ShowAllEmployees = props => {
+const EmployeeTable = ({ allEmployee, deleteEmployee, setEditEmployee }) => {
     return (
         <div>
-            <h2>Employee Table</h2>
+            <h3>Employee Table</h3>
 
-            <table border={1}>
+            <table border="1" cellPadding="10">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Salary</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    {props.tableData.map(emp => (
+                    {allEmployee.map(emp => (
                         <tr key={emp.id}>
                             <td>{emp.id}</td>
                             <td>{emp.name}</td>
                             <td>{emp.salary}</td>
                             <td>
-                                <button onClick={() => props.onIdSelect(emp.id)}>
+                                <button onClick={() => setEditEmployee(emp)}>
+                                    Update
+                                </button>
+
+                                <button onClick={() => deleteEmployee(emp.id)}>
                                     Delete
                                 </button>
                             </td>
@@ -33,4 +38,4 @@ const ShowAllEmployees = props => {
     );
 };
 
-export default ShowAllEmployees;
+export default EmployeeTable;

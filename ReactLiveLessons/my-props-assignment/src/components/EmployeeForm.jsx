@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-const EmployeeForm = ({ handleAdd, handleUpdate, updateEmployee, setUpdateEmployee }) => {
+const EmployeeForm = ({
+    handleAdd,
+    handleUpdate,
+    updateEmployee,
+    setUpdateEmployee,
+    user,
+}) => {
     const [employee, setEmployee] = useState({
         id: "",
         name: "",

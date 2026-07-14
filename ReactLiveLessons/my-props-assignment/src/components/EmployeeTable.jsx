@@ -1,6 +1,6 @@
 import React from "react";
 
-const EmployeeTable = ({ allEmployees, handleDelete, setUpdateEmployee }) => {
+const EmployeeTable = ({ allEmployees, handleDelete, setUpdateEmployee, user }) => {
     return (
         <div>
             <h2>Employee Table</h2>
@@ -12,7 +12,7 @@ const EmployeeTable = ({ allEmployees, handleDelete, setUpdateEmployee }) => {
                         <th>Name</th>
                         <th>Role</th>
                         <th>Salary</th>
-                        <th>Actions</th>
+                        {user.role === "Admin" && <th>Actions</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -22,14 +22,17 @@ const EmployeeTable = ({ allEmployees, handleDelete, setUpdateEmployee }) => {
                             <td>{emp.name}</td>
                             <td>{emp.role}</td>
                             <td>{emp.salary.toFixed(2)}</td>
-                            <td>
-                                <button onClick={() => handleDelete(emp.id)}>
-                                    Delete
-                                </button>
-                                <button onClick={() => setUpdateEmployee(emp)}>
-                                    Update
-                                </button>
-                            </td>
+
+                            {user.role === "Admin" && (
+                                <td>
+                                    <button onClick={() => handleDelete(emp.id)}>
+                                        Delete
+                                    </button>
+                                    <button onClick={() => setUpdateEmployee(emp)}>
+                                        Update
+                                    </button>
+                                </td>
+                            )}
                         </tr>
                     ))}
                 </tbody>

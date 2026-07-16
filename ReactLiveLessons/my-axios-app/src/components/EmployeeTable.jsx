@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { getAllEmployees } from "../apiServices";
+import { deleteEmployee, getAllEmployees } from "../apiServices";
 
-const EmployeeTable = () => {
+const EmployeeTable = ({ ref, setRef, setUpdatingEmployee }) => {
     const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
         fetchEmployees();
-    }, []);
+    }, [ref]);
 
     const fetchEmployees = async () => {
         const { data } = await getAllEmployees();
         setEmployees(data);
+    };
+
+    const handleDelete = id => {
+        if (confirm("Delete this employee?")) {
+            deleteEmployee(id)
+                .then(res => {
+                    setRef(!ref);
+                })
+                .catch(err => {
+                    console.log("Error in delete : ", err);
+                });
+        }
     };
 
     return (
@@ -19,10 +31,13 @@ const EmployeeTable = () => {
 
             <table border={2}>
                 <thead>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Role</th>
-                    <th>Salary</th>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Salary</th>
+                        <th>Actions</th>
+                    </tr>
                 </thead>
 
                 <tbody>
@@ -32,6 +47,14 @@ const EmployeeTable = () => {
                             <td>{emp.name}</td>
                             <td>{emp.role}</td>
                             <td>{emp.salary}</td>
+                            <td>
+                                <button onClick={() => handleDelete(emp.id)}>
+                                    Delete
+                                </button>
+                                <button onClick={() => setUpdatingEmployee(emp)}>
+                                    Update
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

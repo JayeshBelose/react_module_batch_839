@@ -1,0 +1,31 @@
+{
+  "employees": [
+    {
+      "name": "Rahul",
+      "role": "Developer",
+      "salary": 55000,
+      "id": "6zKQ03JSonw"
+    },
+    {
+      "name": "Amit",
+      "role": "Consulting",
+      "salary": 45000,
+      "id": "lMiaN5cNs6k"
+    }
+  ],
+  "students": [
+    {
+      "roll": 2,
+      "name": "yash",
+      "marks": 83.24,
+      "id": "CB7ocx1sCyc"
+    },
+    {
+      "roll": 3,
+      "name": "neha",
+      "marks": 81,
+      "id": "ho1Zpwd0NyU"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

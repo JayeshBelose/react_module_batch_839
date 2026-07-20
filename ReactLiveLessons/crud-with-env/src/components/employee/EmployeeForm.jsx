@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addEmployee, updateEmployee } from "../../apiServices";
+import { addEmployee, updateEmployee } from "../../apis/employeeApi";
 
 const EmployeeForm = ({ ref, setRef, employeeToUpdate, setEmployeeToUpdate }) => {
     const [employee, setEmployee] = useState({

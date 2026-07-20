@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { deleteEmployeeById, getAllEmployees } from "../../apiServices";
+import { deleteEmployeeById, getAllEmployees } from "../../apis/employeeApi";
 
 const EmployeeTable = ({ ref, setRef, setEmployeeToUpdate }) => {
     const [allEmployees, setAllEmployees] = useState([]);

@@ -1,7 +1,7 @@
 import React from "react";
-import { deleteStudentById, getAllStudents } from "../../apiServices";
 import { useState } from "react";
 import { useEffect } from "react";
+import { deleteStudentById, getAllStudents } from "../../apis/studentApi";
 
 const StudentTable = ({ ref, setRef, setStudentToUpdate }) => {
     const [allStudents, setAllStudents] = useState([]);

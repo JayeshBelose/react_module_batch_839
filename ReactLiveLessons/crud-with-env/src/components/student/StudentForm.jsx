@@ -1,6 +1,6 @@
 import React from "react";
-import { addStudent, updateStudent } from "../../apiServices";
 import { useState } from "react";
+import { addStudent, updateStudent } from "../../apis/studentApi";
 
 const StudentForm = ({ ref, setRef, studentToUpdate, setStudentToUpdate }) => {
     const [student, setStudent] = useState({

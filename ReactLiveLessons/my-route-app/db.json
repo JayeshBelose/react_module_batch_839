@@ -1,19 +1,16 @@
 {
-    "employees": [
+    "users": [
         {
             "name": "Rahul",
-            "role": "Developer",
-            "salary": 55000
+            "email": "Rahul",
+            "password": "Rahul",
+            "phone": 1234567890
         },
         {
             "name": "Amit",
-            "role": "Admin",
-            "salary": 45000
-        },
-        {
-            "name": "Jayesh",
-            "role": "Developer",
-            "salary": 45000.0
+            "email": "Amit",
+            "password": "Amit",
+            "phone": 9876543212
         }
     ]
 }

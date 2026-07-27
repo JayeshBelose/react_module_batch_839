@@ -5,8 +5,9 @@ const Navbar = () => {
     return (
         <div>
             <nav>
-                <Link to={"/form"}>Form</Link>
-                <Link to={"/table"}>Table</Link>
+                <Link to={"/login"}>Login</Link> | <Link to={"/"}>Home</Link> |{" "}
+                <Link to={"/kids"}>Kid's</Link> | <Link to={"/mens"}>Men's</Link> |{" "}
+                <Link to={"/womens"}>Women's</Link>
             </nav>
         </div>
     );

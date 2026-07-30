@@ -44,8 +44,14 @@ const PatientTable = ({ ref, setRef, setUpdatingPatient }) => {
 
             <div>
                 Search Patient :{" "}
-                <input type="text" name="search" onChange={handleChange} />
-                <button onClick={handleSearch}>Search</button>
+                <input
+                    type="text"
+                    name="search"
+                    onChange={handleChange}
+                    onKeyUp={handleSearch}
+                />
+                {/* <input type="text" name="search" onChange={handleChange} />
+                <button onClick={handleSearch}>Search</button> */}
             </div>
 
             <table border={2}>

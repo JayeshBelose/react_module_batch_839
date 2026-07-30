@@ -1,0 +1,16 @@
+{
+  "patients": [
+    {
+      "name": "Rahul Sharma",
+      "age": 28,
+      "gender": "Male",
+      "assignedDoctor": "Dr. Mehta",
+      "department": "Cardiology",
+      "mobile": "6274813912",
+      "email": "rahulsharma@gmail.com",
+      "status": "Admitted",
+      "id": "aMRHWfE9rUU"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

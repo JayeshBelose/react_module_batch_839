@@ -1,0 +1,132 @@
+commands ->
+npm create vite@latest my-app
+npm i axios
+npx json-server --watch db.json --port 8080
+
+git add .
+git commit -m ""
+git push -u origin main
+
+#########################################
+
+db.json ->
+{
+    "orders": [
+        {
+            "customer": "Jayesh",
+            "from": "Warje",
+            "to": "Dattawadi"
+        },
+        {
+            "customer": "Himesh",
+            "from": "Katraj",
+            "to": "Kharadi"
+        }
+    ]
+}
+
+#########################################
+
+apiService ->
+import axios from "axios";
+
+export const getAllOrders = () => axios.get(`http://localhost:8080/orders`);
+
+export const addOrder = order => axios.post(`http://localhost:8080/orders`, order);
+
+export const deleteOrder = id => axios.delete(`http://localhost:8080/orders/${id}`);
+
+export const updateOrder = (id, order) =>
+    axios.put(`http://localhost:8080/orders/${id}`, order);
+
+#########################################
+
+app.jsx components ->
+<OrderForm
+    ref={ref}
+    setRef={setRef}
+    updatingOrder={updatingOrder}
+    setUpdatingOrder={setUpdatingOrder}
+/>
+<OrderTable
+    ref={ref}
+    setRef={setRef}
+    setUpdatingOrder={setUpdatingOrder}
+/>
+
+#########################################
+
+table ->
+<table border={2}>
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {orders.map(o => (
+            <tr key={o.id}>
+                <td>{o.customer}</td>
+                <td>{o.from}</td>
+                <td>{o.to}</td>
+                <td>
+                    <button onClick={() => handleDelete(o.id)}>Delete</button>
+                    <button onClick={() => setUpdatingOrder(o)}>
+                        Update
+                    </button>
+                </td>
+            </tr>
+        ))}
+    </tbody>
+</table>
+
+#########################################
+
+form ->
+<form onSubmit={handleSubmit}>
+    {updatingOrder && (
+        <>
+            ID :{" "}
+            <input
+                type="text"
+                name="id"
+                value={order.id}
+                disabled={updatingOrder}
+            />
+            <br />
+        </>
+    )}
+    Customer :{" "}
+    <input
+        type="text"
+        name="customer"
+        value={order.customer}
+        onChange={handleChange}
+        required
+    />
+    <br />
+    From :{" "}
+    <input
+        type="text"
+        name="from"
+        value={order.from}
+        onChange={handleChange}
+        required
+    />
+    <br />
+    To :{" "}
+    <input
+        type="text"
+        name="to"
+        value={order.to}
+        onChange={handleChange}
+        required
+    />
+    <br />
+    <br />
+    <button type="submit">{updatingOrder ? "Update" : "Add"}</button>
+</form>

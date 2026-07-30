@@ -1,164 +1,59 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { addPatient, updatePatient } from "../apiServices";
 
-const PatientForm = ({ ref, setRef, updatingPatient, setUpdatingPatient }) => {
-    const [patient, setPatient] = useState({
-        name: "",
-        age: "",
-        gender: "",
-        assignedDoctor: "",
-        department: "",
-        mobile: "",
-        email: "",
-        status: "",
-    });
+const emptyPatient = {
+    name: "", age: "", gender: "", assignedDoctor: "", department: "", mobile: "", email: "", status: "",
+};
 
-    const handleChange = e => {
-        const { name, value, type } = e.target;
-        const parsedValue = type === "number" ? Number(value) : value;
+const PatientForm = ({ refreshKey, setRefreshKey, updatingPatient, onClose }) => {
+    const [patient, setPatient] = useState(() => updatingPatient ? { ...updatingPatient } : emptyPatient);
+    const [isSaving, setIsSaving] = useState(false);
+    const [error, setError] = useState("");
 
-        setPatient({ ...patient, [name]: parsedValue });
+    const handleChange = event => {
+        const { name, value } = event.target;
+        setPatient(currentPatient => ({ ...currentPatient, [name]: name === "age" ? value.replace(/[^0-9]/g, "") : value }));
     };
 
-    const handleSubmit = e => {
-        e.preventDefault();
-
-        updatingPatient
-            ? updatePatient(patient.id, patient)
-                  .then(res => {
-                      setPatient({
-                          name: "",
-                          age: "",
-                          gender: "",
-                          assignedDoctor: "",
-                          department: "",
-                          mobile: "",
-                          email: "",
-                          status: "",
-                      });
-                      setUpdatingPatient(null);
-                      setRef(!ref);
-                  })
-                  .catch(err => {
-                      console.log("Error in update : ", err);
-                  })
-            : addPatient(patient)
-                  .then(res => {
-                      setPatient({
-                          name: "",
-                          age: "",
-                          gender: "",
-                          assignedDoctor: "",
-                          department: "",
-                          mobile: "",
-                          email: "",
-                          status: "",
-                      });
-                      setRef(!ref);
-                  })
-                  .catch(err => {
-                      console.log("Error in add : ", err);
-                  });
+    const handleSubmit = async event => {
+        event.preventDefault();
+        setIsSaving(true);
+        setError("");
+        try {
+            const payload = { ...patient, age: Number(patient.age) };
+            if (updatingPatient) await updatePatient(updatingPatient.id, payload);
+            else await addPatient(payload);
+            setRefreshKey(refreshKey + 1);
+            onClose();
+        } catch {
+            setError("We couldn't save this patient. Confirm the server is running and try again.");
+        } finally {
+            setIsSaving(false);
+        }
     };
-
-    if (updatingPatient && patient.id !== updatingPatient.id) {
-        setPatient(updatingPatient);
-    }
 
     return (
-        <div>
-            <h3>Patient Form</h3>
-
-            <form onSubmit={handleSubmit}>
-                {updatingPatient && (
-                    <>
-                        ID :{" "}
-                        <input
-                            type="text"
-                            name="id"
-                            value={patient.id}
-                            disabled={updatingPatient}
-                        />
-                        <br />
-                    </>
-                )}
-                Patient Name :{" "}
-                <input
-                    type="text"
-                    name="name"
-                    value={patient.name}
-                    onChange={handleChange}
-                    required
-                />
-                <br />
-                Age :{" "}
-                <input
-                    type="text"
-                    name="age"
-                    value={patient.age}
-                    onChange={handleChange}
-                    required
-                />
-                <br />
-                Gender :{" "}
-                <select
-                    name="gender"
-                    id="gender"
-                    value={patient.gender}
-                    onChange={handleChange}
-                    required>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-                <br />
-                Assigned Doctor :{" "}
-                <input
-                    type="text"
-                    name="assignedDoctor"
-                    value={patient.assignedDoctor}
-                    onChange={handleChange}
-                    required
-                />
-                <br />
-                Department :{" "}
-                <input
-                    type="text"
-                    name="department"
-                    value={patient.department}
-                    onChange={handleChange}
-                    required
-                />
-                <br />
-                Mobile :{" "}
-                <input
-                    type="text"
-                    name="mobile"
-                    value={patient.mobile}
-                    onChange={handleChange}
-                    required
-                />
-                <br />
-                Email :{" "}
-                <input
-                    type="text"
-                    name="email"
-                    value={patient.email}
-                    onChange={handleChange}
-                    required
-                />
-                <br />
-                Status :{" "}
-                <input
-                    type="text"
-                    name="status"
-                    value={patient.status}
-                    onChange={handleChange}
-                    required
-                />
-                <br />
-                <br />
-                <button type="submit">{updatingPatient ? "Update" : "Add"}</button>
-            </form>
+        <div className="card border-0 shadow-sm">
+            <div className="card-header bg-white border-bottom d-flex justify-content-between align-items-center py-3 px-3 px-md-4">
+                <div><h2 className="h5 fw-bold mb-1">{updatingPatient ? "Edit patient" : "Add a patient"}</h2><p className="text-secondary small mb-0">All fields are required to keep the record complete.</p></div>
+                <button type="button" className="btn-close" aria-label="Close form" onClick={onClose} />
+            </div>
+            <div className="card-body p-3 p-md-4">
+                {error && <div className="alert alert-danger" role="alert">{error}</div>}
+                <form onSubmit={handleSubmit}>
+                    <div className="row g-3">
+                        <div className="col-md-7"><label htmlFor="name" className="form-label fw-medium">Patient name</label><input id="name" className="form-control" name="name" value={patient.name} onChange={handleChange} placeholder="e.g. Ananya Sharma" required /></div>
+                        <div className="col-md-2"><label htmlFor="age" className="form-label fw-medium">Age</label><input id="age" type="number" min="0" max="150" className="form-control" name="age" value={patient.age} onChange={handleChange} required /></div>
+                        <div className="col-md-3"><label htmlFor="gender" className="form-label fw-medium">Gender</label><select id="gender" className="form-select" name="gender" value={patient.gender} onChange={handleChange} required><option value="">Select</option><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select></div>
+                        <div className="col-md-6"><label htmlFor="assignedDoctor" className="form-label fw-medium">Assigned doctor</label><input id="assignedDoctor" className="form-control" name="assignedDoctor" value={patient.assignedDoctor} onChange={handleChange} placeholder="e.g. Dr. Mehta" required /></div>
+                        <div className="col-md-6"><label htmlFor="department" className="form-label fw-medium">Department</label><input id="department" className="form-control" name="department" value={patient.department} onChange={handleChange} placeholder="e.g. Cardiology" required /></div>
+                        <div className="col-md-4"><label htmlFor="mobile" className="form-label fw-medium">Mobile number</label><input id="mobile" type="tel" className="form-control" name="mobile" value={patient.mobile} onChange={handleChange} placeholder="10-digit number" pattern="[0-9]{10}" required /></div>
+                        <div className="col-md-5"><label htmlFor="email" className="form-label fw-medium">Email address</label><input id="email" type="email" className="form-control" name="email" value={patient.email} onChange={handleChange} placeholder="name@example.com" required /></div>
+                        <div className="col-md-3"><label htmlFor="status" className="form-label fw-medium">Care status</label><select id="status" className="form-select" name="status" value={patient.status} onChange={handleChange} required><option value="">Select</option><option value="Admitted">Admitted</option><option value="Under Treatment">Under treatment</option><option value="Discharged">Discharged</option></select></div>
+                    </div>
+                    <div className="d-flex justify-content-end gap-2 border-top mt-4 pt-3"><button type="button" className="btn btn-outline-secondary" onClick={onClose}>Cancel</button><button className="btn btn-primary px-4" disabled={isSaving}>{isSaving ? "Saving…" : updatingPatient ? "Save changes" : "Add patient"}</button></div>
+                </form>
+            </div>
         </div>
     );
 };

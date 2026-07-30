@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { deletePatient, getAllPatients } from "../apiServices";
+import { deletePatient, getAllPatients, searchPatient } from "../apiServices";
 
 const PatientTable = ({ ref, setRef, setUpdatingPatient }) => {
     const [patients, setPatients] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         const fetchPatients = async () => {
@@ -24,9 +25,28 @@ const PatientTable = ({ ref, setRef, setUpdatingPatient }) => {
         }
     };
 
+    const handleChange = e => {
+        setSearch(e.target.value);
+    };
+
+    const handleSearch = async () => {
+        try {
+            const result = await searchPatient(search);
+            setPatients(result);
+        } catch (err) {
+            console.log("Search error:", err);
+        }
+    };
+
     return (
         <div>
             <h3>Patient Table</h3>
+
+            <div>
+                Search Patient :{" "}
+                <input type="text" name="search" onChange={handleChange} />
+                <button onClick={handleSearch}>Search</button>
+            </div>
 
             <table border={2}>
                 <thead>
@@ -44,24 +64,32 @@ const PatientTable = ({ ref, setRef, setUpdatingPatient }) => {
                 </thead>
 
                 <tbody>
-                    {patients.map(p => (
-                        <tr key={p.id}>
-                            <td>{p.name}</td>
-                            <td>{p.age}</td>
-                            <td>{p.gender}</td>
-                            <td>{p.assignedDoctor}</td>
-                            <td>{p.department}</td>
-                            <td>{p.mobile}</td>
-                            <td>{p.email}</td>
-                            <td>{p.status}</td>
-                            <td>
-                                <button onClick={() => handleDelete(p.id)}>Delete</button>
-                                <button onClick={() => setUpdatingPatient(p)}>
-                                    Update
-                                </button>
-                            </td>
+                    {patients.length > 0 ? (
+                        patients.map(p => (
+                            <tr key={p.id}>
+                                <td>{p.name}</td>
+                                <td>{p.age}</td>
+                                <td>{p.gender}</td>
+                                <td>{p.assignedDoctor}</td>
+                                <td>{p.department}</td>
+                                <td>{p.mobile}</td>
+                                <td>{p.email}</td>
+                                <td>{p.status}</td>
+                                <td>
+                                    <button onClick={() => handleDelete(p.id)}>
+                                        Delete
+                                    </button>{" "}
+                                    <button onClick={() => setUpdatingPatient(p)}>
+                                        Update
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="9">No patients found.</td>
                         </tr>
-                    ))}
+                    )}
                 </tbody>
             </table>
         </div>

@@ -10,6 +10,17 @@
       "email": "rahulsharma@gmail.com",
       "status": "Admitted",
       "id": "aMRHWfE9rUU"
+    },
+    {
+      "name": "Sakshi Mohal",
+      "age": "24",
+      "gender": "female",
+      "assignedDoctor": "Dr. Rathi",
+      "department": "Cardiology",
+      "mobile": "1234567890",
+      "email": "sakshi@gmail.com",
+      "status": "Discharged",
+      "id": "HEr0UpSE0DQ"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

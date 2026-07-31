@@ -19,14 +19,18 @@ const App = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    const admittedPatients = patients.filter(patient => patient.status === "Admitted").length;
+    const admittedPatients = patients.filter(
+        patient => patient.status === "Admitted",
+    ).length;
     const inTreatmentPatients = patients.filter(
         patient => patient.status === "Under Treatment",
     ).length;
 
     return (
         <main className="min-vh-100 bg-body-tertiary">
-            <nav className="navbar navbar-expand bg-primary shadow-sm" aria-label="Main navigation">
+            <nav
+                className="navbar navbar-expand bg-primary shadow-sm"
+                aria-label="Main navigation">
                 <div className="container py-1">
                     <a className="navbar-brand text-white fw-bold" href="#top">
                         <span className="d-inline-flex align-items-center justify-content-center bg-white text-primary rounded-circle me-2 px-2 py-1 fw-bold">
@@ -43,9 +47,14 @@ const App = () => {
             <div id="top" className="container py-4 py-md-5">
                 <section className="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
                     <div>
-                        <p className="text-primary fw-semibold text-uppercase small mb-2">Hospital dashboard</p>
+                        <p className="text-primary fw-semibold text-uppercase small mb-2">
+                            Hospital dashboard
+                        </p>
                         <h1 className="display-6 fw-bold mb-2">Patient directory</h1>
-                        <p className="text-secondary mb-0">Keep patient details, care status, and contact information in one place.</p>
+                        <p className="text-secondary mb-0">
+                            Keep patient details, care status, and contact information in
+                            one place.
+                        </p>
                     </div>
                     <button
                         type="button"
@@ -60,13 +69,38 @@ const App = () => {
 
                 <section className="row g-3 mb-4" aria-label="Patient summary">
                     <div className="col-12 col-sm-4">
-                        <div className="card border-0 shadow-sm h-100"><div className="card-body"><p className="text-secondary small fw-semibold text-uppercase mb-2">Total patients</p><p className="fs-2 fw-bold mb-0">{patients.length}</p></div></div>
+                        <div className="card border-0 shadow-sm h-100">
+                            <div className="card-body">
+                                <p className="text-secondary small fw-semibold text-uppercase mb-2">
+                                    Total patients
+                                </p>
+                                <p className="fs-2 fw-bold mb-0">{patients.length}</p>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-12 col-sm-4">
-                        <div className="card border-0 shadow-sm h-100"><div className="card-body"><p className="text-secondary small fw-semibold text-uppercase mb-2">Currently admitted</p><p className="fs-2 fw-bold text-success mb-0">{admittedPatients}</p></div></div>
+                        <div className="card border-0 shadow-sm h-100">
+                            <div className="card-body">
+                                <p className="text-secondary small fw-semibold text-uppercase mb-2">
+                                    Currently admitted
+                                </p>
+                                <p className="fs-2 fw-bold text-success mb-0">
+                                    {admittedPatients}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-12 col-sm-4">
-                        <div className="card border-0 shadow-sm h-100"><div className="card-body"><p className="text-secondary small fw-semibold text-uppercase mb-2">Under treatment</p><p className="fs-2 fw-bold text-warning-emphasis mb-0">{inTreatmentPatients}</p></div></div>
+                        <div className="card border-0 shadow-sm h-100">
+                            <div className="card-body">
+                                <p className="text-secondary small fw-semibold text-uppercase mb-2">
+                                    Under treatment
+                                </p>
+                                <p className="fs-2 fw-bold text-warning-emphasis mb-0">
+                                    {inTreatmentPatients}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 

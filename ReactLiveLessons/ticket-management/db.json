@@ -1,0 +1,59 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123",
+      "name": "Admin"
+    },
+    {
+      "id": "2",
+      "username": "user",
+      "password": "user123",
+      "name": "User"
+    }
+  ],
+  "tickets": [
+    {
+      "id": "1",
+      "employeeName": "Rahul",
+      "department": "Development",
+      "issueType": "Laptop",
+      "description": "Laptop is not starting",
+      "priority": "High",
+      "ticketDate": "2026-08-10",
+      "status": "Resolved"
+    },
+    {
+      "id": "2",
+      "employeeName": "Priya",
+      "department": "HR",
+      "issueType": "Email",
+      "description": "Unable to send emails",
+      "priority": "Medium",
+      "ticketDate": "2026-08-11",
+      "status": "Resolved"
+    },
+    {
+      "id": "3",
+      "employeeName": "Amit",
+      "department": "Testing",
+      "issueType": "Printer",
+      "description": "Printer is not connecting",
+      "priority": "Low",
+      "ticketDate": "2026-08-09",
+      "status": "Rejected"
+    },
+    {
+      "employeeName": "Rahul",
+      "department": "HR",
+      "issueType": "Printer",
+      "description": "Test",
+      "ticketDate": "2026-08-20",
+      "priority": "Low",
+      "status": "Open",
+      "id": "4NhertdwHEI"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

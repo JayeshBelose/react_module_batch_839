@@ -1,0 +1,48 @@
+{
+    "leaves": [
+        {
+            "id": 1,
+            "employeeName": "Rahul",
+            "department": "Development",
+            "leaveType": "Sick Leave",
+            "days": 3,
+            "fromDate": "2026-08-10",
+            "toDate": "2026-08-12",
+            "availableBalance": 8,
+            "status": "Approved"
+        },
+        {
+            "id": 2,
+            "employeeName": "Priya",
+            "department": "HR",
+            "leaveType": "Casual Leave",
+            "days": 4,
+            "fromDate": "2026-08-18",
+            "toDate": "2026-08-21",
+            "availableBalance": 6,
+            "status": "Pending"
+        },
+        {
+            "id": 3,
+            "employeeName": "Amit",
+            "department": "Testing",
+            "leaveType": "Earned Leave",
+            "days": 7,
+            "fromDate": "2026-08-20",
+            "toDate": "2026-08-26",
+            "availableBalance": 4,
+            "status": "Rejected"
+        },
+        {
+            "id": 4,
+            "employeeName": "Sneha",
+            "department": "Sales",
+            "leaveType": "Work From Home",
+            "days": 2,
+            "fromDate": "2026-08-22",
+            "toDate": "2026-08-23",
+            "availableBalance": 2,
+            "status": "Approved"
+        }
+    ]
+}
